@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev-Assignment.Main", "Dev-Assignment\Dev-Assignment.Main.csproj", "{47AE91AA-703D-4C0E-972B-2F4C9C4B401C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dev-Assignment.Main", "Dev-Assignment\Dev-Assignment.Main.csproj", "{47AE91AA-703D-4C0E-972B-2F4C9C4B401C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev-Assignment.Tests", "Dev-Assignment.Tests\Dev-Assignment.Tests.csproj", "{EEBB437A-360D-44CC-9CF0-68586EF8D5D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dev-Assignment.Tests", "Dev-Assignment.Tests\Dev-Assignment.Tests.csproj", "{EEBB437A-360D-44CC-9CF0-68586EF8D5D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev-Assignment.DAL", "Dev-Assignment.DAL\Dev-Assignment.DAL.csproj", "{B5B52002-D797-43C0-AF57-F67AD758D5ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{EEBB437A-360D-44CC-9CF0-68586EF8D5D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEBB437A-360D-44CC-9CF0-68586EF8D5D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEBB437A-360D-44CC-9CF0-68586EF8D5D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5B52002-D797-43C0-AF57-F67AD758D5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B52002-D797-43C0-AF57-F67AD758D5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B52002-D797-43C0-AF57-F67AD758D5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B52002-D797-43C0-AF57-F67AD758D5ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
