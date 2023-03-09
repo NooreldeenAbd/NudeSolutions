@@ -1,19 +1,19 @@
 <template>
   <div @click="onClickActivator()" class="relative" ref="activatorRef">
     <div
-      class="w-full border border-black rounded px-3 py-1 overflow-hidden"
+      class="w-full border border-black rounded px-3 py-1 overflow-hidden bg-white"
       style="height: 32px"
     >
       <div>{{ selectedItem }}</div>
-      <div class="absolute bg-bg-gray-200" style="right: 12px; top: 5px">
-        <i class="fa fa-chevron-down"></i>
+      <div class="absolute bg-white" style="right: 12px; top: 5px">
+        <i v-if="showMenue" class="fa fa-chevron-up"></i>
+        <i v-else class="fa fa-chevron-down"></i>
       </div>
     </div>
 
     <div class="absolute w-full h-full top-0 left-0">
       <div
-        class="bg-gray-300 border-gray-500 absolute overflow-y-auto"
-        :style="getPopupWidth()"
+        class="bg-gray-300 border-gray-500 absolute overflow-y-auto w-full"
         style="top: 50px; max-height: 700px; z-index: 99"
         ref="menuRef"
       >
