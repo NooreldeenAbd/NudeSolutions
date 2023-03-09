@@ -1,12 +1,23 @@
 import axios from 'axios'
 
 class PersonalListService {
-    url = 'http://localhost:5133/api/insurance';
+    url = 'http://localhost:5133/api/Insurance';
 
-    public async GetList(): Promise<InsuredItem[]> {
+    public async GetList(): Promise<TableData[]> {
         try {
             const response = await axios.get(this.url)
-            return response.data
+            const insuredItems = [];
+            for (const id in CatagoryId) {
+                console.log(id)
+                const filteredData = response.data.filter((d) => d.catagoryId == id)
+                insuredItems.push(
+                    {
+                        catagory: CatagoryNames[id],
+                        body: filteredData
+                    });
+            }
+            return insuredItems;
+
         } catch (e) {
             console.log(e)
             return [];
@@ -36,15 +47,25 @@ class PersonalListService {
 
 export default new PersonalListService();
 
+export interface TableData {
+    catagory: string,
+    body: InsuredItem[]
+}
+
 export interface InsuredItem {
     id: number;
     name: string;
     value: number;
-    catagory: catagories
+    catagoryId: CatagoryId
 }
 
-export enum catagories {
+export enum CatagoryId {
     Electronics = 1,
     Clothing = 2,
     Kitchen = 3,
+}
+export const CatagoryNames = {
+    1: 'Electronics',
+    2: 'Clothing',
+    3: 'Kitchen'
 }

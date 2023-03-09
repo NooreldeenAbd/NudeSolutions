@@ -1,0 +1,14 @@
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\bin\Release\net7.0\Dev-Assignment.DAL.deps.json
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\bin\Release\net7.0\Dev-Assignment.DAL.runtimeconfig.json
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\bin\Release\net7.0\Dev-Assignment.DAL.dll
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\bin\Release\net7.0\Dev-Assignment.DAL.pdb
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.csproj.AssemblyReference.cache
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.AssemblyInfoInputs.cache
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.AssemblyInfo.cs
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.csproj.CoreCompileInputs.cache
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.dll
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\refint\Dev-Assignment.DAL.dll
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.pdb
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\Dev-Assignment.DAL.genruntimeconfig.cache
+C:\Users\noore\Desktop\NudeSolutions\Backend\Dev-Assignment.DAL\obj\Release\net7.0\ref\Dev-Assignment.DAL.dll

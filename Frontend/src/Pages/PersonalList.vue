@@ -1,7 +1,7 @@
 <template>
   <!-- Input -->
   <div
-    class="container mx-auto bg-gray-200 rounded shadow border p-8 m-10 flex grid grid-cols-4 gap-5"
+    class="mx-auto bg-gray-200 rounded shadow border p-8 m-10 flex grid grid-cols-4 gap-5"
   >
     <InputField
       :input-id="'name'"
@@ -18,18 +18,17 @@
       :model-value="itemValue"
     ></InputField>
     <Dropdown
-      :items="['Electronics', 'Clothing', 'Kitchen', 'Other']"
+      :items="['Electronics', 'Clothing', 'Kitchen']"
       :model-value="itemCatagory"
     ></Dropdown>
     <ButtonField :input-name="'Add'"></ButtonField>
   </div>
 
   <!-- Table -->
-  <div class="flex items-center justify-center overflow-y-auto">
-    <sub-table
-      :catagory="'hello'"
-      :body="[{ name: 'Name', value: 2200 }]"
-    ></sub-table>
+  <div class="flex justify-center relative overflow-y-auto grid">
+    <div v-for="(item, index) in tableData" :key="index">
+      <sub-table :catagory="item.catagory" :body="item.body"></sub-table>
+    </div>
   </div>
 </template>
 
@@ -40,15 +39,19 @@ import InputField from "../components/InputField.vue";
 import ButtonField from "../components/ButtonField.vue";
 import SubTable from "../components/SubTable.vue";
 import PersonalListService, {
-  catagories,
-  InsuredItem,
+  CatagoryId,
+  TableData,
 } from "../Services/PersonalListService";
 
 const itemCatagory = ref<string>("");
 const itemName = ref<string>("");
 const itemValue = ref<number>();
+const tableData = ref<TableData[]>([]);
 
 onMounted(async () => {
-  PersonalListService.GetList();
+  const tableDataResponse = await PersonalListService.GetList();
+  if (tableDataResponse) {
+    tableData.value = tableDataResponse;
+  }
 });
 </script>

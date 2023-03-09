@@ -1,5 +1,5 @@
 <template>
-  <table v-if="body.length > 0">
+  <table v-if="body.length > 0" style="width: 500px" class="table-auto">
     <!-- Catacogry -->
     <thead class="bg-gray-700 text-white text-xl">
       <tr>
@@ -11,9 +11,9 @@
     <!-- Items -->
     <tbody class="border-b border-b-2 border-b-black">
       <tr class="hover:bg-gray-200" v-for="(item, index) in body" :key="index">
-        <td class="p-5">{{ item.name }}</td>
-        <td class="p-5">{{ item.value }}</td>
-        <td class="p-5">
+        <td class="p-2">{{ item.name }}</td>
+        <td class="p-2">{{ item.value }}</td>
+        <td class="p-2">
           <i
             class="fa fa-trash hover:cursor-pointer hover:text-red-500"
             @click="onDeleteItem(item)"
@@ -30,7 +30,7 @@ import { ref, defineProps, watch } from "vue";
 
 const props = defineProps<{
   catagory: string;
-  body: { name: string; value: number }[];
+  body: any;
 }>();
 
 const emit = defineEmits<{
