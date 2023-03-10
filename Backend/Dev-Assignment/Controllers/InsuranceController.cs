@@ -17,9 +17,9 @@ namespace Dev_Assignment.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Gets a list of all insured items
         /// </summary>
-        /// <returns></returns>
+        /// <returns>list of all isnured items or null</returns>
         [HttpGet()]
         public async Task<ActionResult> Get()
         {
@@ -28,9 +28,9 @@ namespace Dev_Assignment.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Creates a new insured item
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Id of new item</returns>
         [HttpPost()]
         public async Task<ActionResult> Post(InsuredItem item)
         {
@@ -39,9 +39,10 @@ namespace Dev_Assignment.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Deletes a single insured item
         /// </summary>
-        /// <returns></returns>
+        /// <param name="id">Id of the insured item</param>
+        /// <returns>True if successfull, otherwise false</returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

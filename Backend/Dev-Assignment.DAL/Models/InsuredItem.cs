@@ -31,6 +31,6 @@ namespace Dev_Assignment.DAL.Models
         /// <summary>
         /// What type of catagory this item belongs to
         /// </summary>
-        public int catagoryId { get; set; }
+        public int categoryId { get; set; }
     }
 }

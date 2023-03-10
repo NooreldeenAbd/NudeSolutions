@@ -4,6 +4,9 @@ using Dev_Assignment.DAL.Models;
 
 namespace Dev_Assignment.Services
 {
+    /// <summary>
+    /// Provides methods fro retriving and maneging insured items
+    /// </summary>
     public class InsuranceService : IInsuranceService
     {
         private readonly IDataContext _context;
@@ -12,7 +15,7 @@ namespace Dev_Assignment.Services
             _context = context;
         }
 
-
+        ///<inheritdoc/>
         public async Task<List<InsuredItem>> GetInsuredItemsAsyn()
         {
             try
@@ -24,7 +27,7 @@ namespace Dev_Assignment.Services
             }
         }
 
-
+        ///<inheritdoc/>
         public async Task<int?> AddInsuredItemAsyn(InsuredItem item)
         {
             try
@@ -38,7 +41,7 @@ namespace Dev_Assignment.Services
             }
         }
 
-
+        ///<inheritdoc/>
         public async Task<bool> DeleteInsuredItemAsyn(int id)
         {
             try
