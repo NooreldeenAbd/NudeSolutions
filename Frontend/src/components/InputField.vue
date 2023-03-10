@@ -11,7 +11,6 @@
       @input="onModelValueUpdate"
       @change="onModelValueUpdate"
       @click="onClick"
-      @blur="onBlur"
     />
   </div>
 </template>
@@ -55,12 +54,5 @@ const onModelValueUpdate = () => {
  */
 const onClick = () => {
   emit("click");
-};
-
-/**
- * Emits blur
- */
-const onBlur = () => {
-  emit("blur");
 };
 </script>

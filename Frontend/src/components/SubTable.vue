@@ -1,9 +1,9 @@
 <template>
   <table v-if="body.length > 0" style="width: 500px" class="table-fixed">
-    <!-- Catacogry -->
+    <!-- Category -->
     <thead class="bg-gray-700 text-white text-lg">
       <tr>
-        <th class="text-left">{{ catagory }}</th>
+        <th class="text-left">{{ category }}</th>
         <th class="text-left">{{ `Sub total: $ ${getTotal()}` }}</th>
         <th class="text-left"></th>
       </tr>
@@ -29,7 +29,7 @@
 import { ref, defineProps, watch } from "vue";
 
 const props = defineProps<{
-  catagory: string;
+  category: string;
   body: any;
 }>();
 
@@ -38,7 +38,7 @@ const emit = defineEmits<{
 }>();
 
 watch(
-  () => props.catagory,
+  () => props.category,
   (next) => {
     header.value = next;
   }
@@ -52,7 +52,7 @@ watch(
   { deep: true }
 );
 
-const header = ref<string>(props.catagory);
+const header = ref<string>(props.category);
 const body = ref<{ name: string; value: number }[]>(props.body);
 
 /**
@@ -62,6 +62,9 @@ const onDeleteItem = (item: any) => {
   emit("delete:value", item);
 };
 
+/**
+ * Gets the total value of the items in teh suitable
+ */
 const getTotal = () => {
   let total = 0;
   body.value.forEach((item) => (total += item.value));

@@ -6,7 +6,7 @@
     >
       <div>{{ selectedItem.title }}</div>
       <div class="absolute bg-white" style="right: 12px; top: 5px">
-        <i v-if="showMenue" class="fa fa-chevron-up"></i>
+        <i v-if="showMenus" class="fa fa-chevron-up"></i>
         <i v-else class="fa fa-chevron-down"></i>
       </div>
     </div>
@@ -17,7 +17,7 @@
         style="top: 50px; max-height: 700px; z-index: 99"
         ref="menuRef"
       >
-        <ul v-if="showMenue" class="">
+        <ul v-if="showMenus" class="">
           <li
             v-for="(item, index) in items"
             :key="index"
@@ -47,7 +47,7 @@ const emit = defineEmits<{
 
 const activatorRef = ref<HTMLElement | null>(null);
 const menuRef = ref<HTMLElement | null>(null);
-const showMenue = ref<boolean>(false);
+const showMenus = ref<boolean>(false);
 const items = ref<{ title: string; value: any }[]>(props.items);
 const selectedItem = ref<{ title: string; value: any }>(props.modelValue);
 
@@ -74,20 +74,9 @@ const onSelectItem = (item: any) => {
 };
 
 /**
- * Shows and hides the meanues
+ * Shows and hides the meanies
  */
 const onClickActivator = () => {
-  showMenue.value = !showMenue.value;
-};
-
-/**
- * Calculates the menu's width
- */
-const getPopupWidth = () => {
-  if (activatorRef.value) {
-    const { left: activatorLeft, right: activatorRight } =
-      activatorRef.value.getBoundingClientRect();
-    return { minWidth: `${activatorRight - activatorLeft}px` };
-  }
+  showMenus.value = !showMenus.value;
 };
 </script>

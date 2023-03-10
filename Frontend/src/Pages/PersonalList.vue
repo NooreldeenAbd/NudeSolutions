@@ -1,9 +1,10 @@
 <template>
   <!-- Input -->
   <div
-    class="mx-auto bg-gray-200 rounded shadow border py-5 m-10 flex grid grid-cols-4 gap-5"
+    class="mx-auto bg-gray-200 rounded shadow border py-5 m-10 flex grid grid-cols-5 gap-5"
   >
     <InputField
+      class="col-start-2"
       :input-id="'name'"
       :input-name="'name'"
       :place-holder="'Item name'"
@@ -25,8 +26,8 @@
         { title: 'Clothing', value: 2 },
         { title: 'Kitchen', value: 3 },
       ]"
-      :model-value="itemCatagory"
-      @update:model-value="onSelectCatagory"
+      :model-value="itemCategory"
+      @update:model-value="onSelectCategory"
     ></Dropdown>
     <ButtonField :input-name="'Add'" @click="onAddItem"></ButtonField>
   </div>
@@ -35,7 +36,7 @@
   <div class="flex justify-center relative overflow-y-auto grid">
     <div v-for="(item, index) in tableData" :key="index">
       <sub-table
-        :catagory="item.catagory"
+        :category="item.category"
         :body="item.body"
         @delete:value="(item) => onDeleteItem(item, index)"
       ></sub-table>
@@ -61,10 +62,10 @@ import SubTable from "../components/SubTable.vue";
 import PersonalListService, {
   InsuredItem,
   TableData,
-  CatagoryIds,
+  CategoryIds,
 } from "../Services/PersonalListService";
 
-const itemCatagory = ref<{ title: string; value: number }>({
+const itemCategory = ref<{ title: string; value: number }>({
   title: "Electronics",
   value: 1,
 });
@@ -85,45 +86,67 @@ onMounted(async () => {
   totalValue.value = total;
 });
 
+/**
+ * Updates the current input's name
+ * @param value the new name value
+ */
 const onUpdateName = (value: string) => {
   itemName.value = value;
 };
 
+/**
+ * Updates the current input's value
+ * @param value the new value ($)
+ */
 const onUpdateValue = (value: number) => {
   itemValue.value = value;
 };
 
-const onSelectCatagory = (value: { title: string; value: number }) => {
-  itemCatagory.value = value;
+/**
+ * Updates the current input's category
+ * @param value the new category
+ */
+const onSelectCategory = (value: { title: string; value: number }) => {
+  itemCategory.value = value;
 };
 
-const onDeleteItem = async (item: InsuredItem, catagoryIndex: number) => {
+/**
+ * Removes an item from the table if delete request is
+ * completed
+ * @param item item to delete
+ * @param categoryIndex the category of the item
+ */
+const onDeleteItem = async (item: InsuredItem, categoryIndex: number) => {
   const deleteResponse = await PersonalListService.DeleteItem(item.id);
   if (deleteResponse) {
-    const itemIndex = tableData.value[catagoryIndex].body.findIndex(
+    const itemIndex = tableData.value[categoryIndex].body.findIndex(
       (i) => i.id === item.id
     );
     if (itemIndex !== -1) {
       totalValue.value -= item.value;
-      tableData.value[catagoryIndex].body.splice(itemIndex, 1);
+      tableData.value[categoryIndex].body.splice(itemIndex, 1);
     }
   }
 };
 
+/**
+ * Adds an item to the table if add request is
+ * completed
+ */
 const onAddItem = async () => {
   const newItem: InsuredItem = {
     id: 0,
     name: itemName.value,
     value: itemValue.value,
-    catagoryId: itemCatagory.value.value,
+    categoryId: itemCategory.value.value,
   };
 
   const addResponse = await PersonalListService.PostItem(newItem);
   if (addResponse) {
     newItem.id = addResponse;
-    itemCatagory.value;
-    const index = CatagoryIds.findIndex(
-      (x) => x.title === itemCatagory.value.title
+    itemCategory.value;
+    const index = CategoryIds.findIndex(
+      (x) => x.title === itemCategory.value.title
     );
     if (index !== -1) {
       totalValue.value += newItem.value;

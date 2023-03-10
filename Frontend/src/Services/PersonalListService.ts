@@ -1,18 +1,23 @@
 import axios from 'axios'
 
 class PersonalListService {
+    // Update API's url
     url = 'http://localhost:5133/api/Insurance';
 
+    /**
+     * Gets the list of insured items
+     * @returns Array of table data, or an empty array if unsuccessful
+     */
     public async GetList(): Promise<TableData[]> {
         try {
             const response = await axios.get(this.url)
             const tableData: TableData[] = [];
 
-            CatagoryIds.forEach((catagory) => {
-                const filteredData = response.data.filter((d: InsuredItem) => d.catagoryId == catagory.id)
+            CategoryIds.forEach((category) => {
+                const filteredData = response.data.filter((d: InsuredItem) => d.categoryId == category.id)
                 tableData.push(
                     {
-                        catagory: catagory.title,
+                        category: category.title,
                         body: filteredData
                     });
             });
@@ -24,6 +29,11 @@ class PersonalListService {
         }
     }
 
+    /**
+     * Request that a new item is created
+     * @param newItem item to create
+     * @returns Id of a newly created item, or 0 if unsuccessful
+     */
     public async PostItem(newItem: InsuredItem): Promise<number> {
         try {
             const response = await axios.post(this.url, newItem);
@@ -34,6 +44,11 @@ class PersonalListService {
         }
     }
 
+    /**
+     * Request that an existing item is deleted
+     * @param id unique id of item to delete
+     * @returns true if successful, otherwise false
+     */
     public async DeleteItem(id: number): Promise<boolean> {
         try {
             const response = await axios.delete(`${this.url}/${id}`);
@@ -48,7 +63,7 @@ class PersonalListService {
 export default new PersonalListService();
 
 export interface TableData {
-    catagory: string,
+    category: string,
     body: InsuredItem[]
 }
 
@@ -56,10 +71,10 @@ export interface InsuredItem {
     id: number;
     name: string;
     value: number;
-    catagoryId: number;
+    categoryId: number;
 }
 
-export const CatagoryIds = [
+export const CategoryIds = [
     { id: 1, title: 'Electronics' },
     { id: 1, title: 'Clothing' },
     { id: 1, title: 'Kitchen' },
