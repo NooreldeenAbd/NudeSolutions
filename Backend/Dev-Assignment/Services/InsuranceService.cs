@@ -15,27 +15,45 @@ namespace Dev_Assignment.Services
 
         public async Task<List<InsuredItem>> GetInsuredItemsAsyn()
         {
-            return _context.InsuredItems.ToList();
+            try
+            {
+                return _context.InsuredItems.ToList();
+            }catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 
-        public async Task<int> AddInsuredItemAsyn(InsuredItem item)
+        public async Task<int?> AddInsuredItemAsyn(InsuredItem item)
         {
-            _context.InsuredItems.Add(item);
-            await _context.SaveChangesAsync();
-            return item.Id;
+            try
+            {
+                _context.InsuredItems.Add(item);
+                _context.SaveChanges();
+                return item.Id;
+            }catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 
         public async Task<bool> DeleteInsuredItemAsyn(int id)
         {
-            var item = _context.InsuredItems.FirstOrDefault(i => i.Id == id);
-            if (item != null)
+            try
             {
-                _context.InsuredItems.Remove(item);
-                _context.SaveChanges();
+                var item = _context.InsuredItems.FirstOrDefault(i => i.Id == id);
+                if (item != null)
+                {
+                    _context.InsuredItems.Remove(item);
+                    _context.SaveChanges();
+                }
+                return true;
+            }catch(Exception ex)
+            {
+                return false;
             }
-            return true;
         }
 
 

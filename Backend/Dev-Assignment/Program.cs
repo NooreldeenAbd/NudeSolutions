@@ -22,6 +22,15 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 //Ensure DB is created
+
+var folder = Environment.SpecialFolder.LocalApplicationData;
+var path = Environment.GetFolderPath(folder);
+var DbPath = System.IO.Path.Join(path, "InsuredItems.db");
+if (File.Exists(DbPath))
+{
+    // If file found, delete it    
+    File.Delete(DbPath);
+}
 app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>().Database.EnsureCreated();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -4,7 +4,7 @@
       class="w-full border border-black rounded px-3 py-1 overflow-hidden bg-white"
       style="height: 32px"
     >
-      <div>{{ selectedItem }}</div>
+      <div>{{ selectedItem.title }}</div>
       <div class="absolute bg-white" style="right: 12px; top: 5px">
         <i v-if="showMenue" class="fa fa-chevron-up"></i>
         <i v-else class="fa fa-chevron-down"></i>
@@ -24,7 +24,7 @@
             class="hover:bg-gray-400 px-5 py-2"
             @click="onSelectItem(item)"
           >
-            {{ item }}
+            {{ item.title }}
           </li>
         </ul>
       </div>
@@ -37,8 +37,8 @@
 import { ref, watch, defineProps } from "vue";
 
 const props = defineProps<{
-  items: any[];
-  modelValue: any;
+  items: { title: string; value: any }[];
+  modelValue: { title: string; value: any };
 }>();
 
 const emit = defineEmits<{
@@ -48,13 +48,19 @@ const emit = defineEmits<{
 const activatorRef = ref<HTMLElement | null>(null);
 const menuRef = ref<HTMLElement | null>(null);
 const showMenue = ref<boolean>(false);
-const items = ref<any[]>(props.items);
-const selectedItem = ref<any>(props.modelValue);
+const items = ref<{ title: string; value: any }[]>(props.items);
+const selectedItem = ref<{ title: string; value: any }>(props.modelValue);
 
+watch(
+  () => props.items,
+  (next) => {
+    items.value = next;
+  }
+);
 watch(
   () => props.modelValue,
   (next) => {
-    items.value = next;
+    selectedItem.value = next;
   }
 );
 

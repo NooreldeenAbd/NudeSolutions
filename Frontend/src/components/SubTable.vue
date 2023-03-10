@@ -1,19 +1,19 @@
 <template>
-  <table v-if="body.length > 0" style="width: 500px" class="table-auto">
+  <table v-if="body.length > 0" style="width: 500px" class="table-fixed">
     <!-- Catacogry -->
-    <thead class="bg-gray-700 text-white text-xl">
+    <thead class="bg-gray-700 text-white text-lg">
       <tr>
-        <th class="">{{ catagory }}</th>
-        <th class="">{{ `$ ${getTotal()}` }}</th>
-        <th class=""></th>
+        <th class="text-left">{{ catagory }}</th>
+        <th class="text-left">{{ `Sub total: $ ${getTotal()}` }}</th>
+        <th class="text-left"></th>
       </tr>
     </thead>
     <!-- Items -->
     <tbody class="border-b border-b-2 border-b-black">
       <tr class="hover:bg-gray-200" v-for="(item, index) in body" :key="index">
-        <td class="p-2">{{ item.name }}</td>
-        <td class="p-2">{{ item.value }}</td>
-        <td class="p-2">
+        <td class="text-left">{{ item.name }}</td>
+        <td class="text-left">{{ item.value }}</td>
+        <td class="">
           <i
             class="fa fa-trash hover:cursor-pointer hover:text-red-500"
             @click="onDeleteItem(item)"
@@ -48,7 +48,8 @@ watch(
   () => props.body,
   (next) => {
     body.value = next;
-  }
+  },
+  { deep: true }
 );
 
 const header = ref<string>(props.catagory);

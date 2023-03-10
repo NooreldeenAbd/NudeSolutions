@@ -8,7 +8,7 @@ namespace Dev_Assignment.Services.Interfaces
     {
 
         Task<List<InsuredItem>> GetInsuredItemsAsyn();
-        Task<int> AddInsuredItemAsyn(InsuredItem item);
+        Task<int?> AddInsuredItemAsyn(InsuredItem item);
         Task<bool> DeleteInsuredItemAsyn(int id);
     }
 }

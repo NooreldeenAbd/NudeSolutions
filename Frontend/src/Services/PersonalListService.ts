@@ -6,17 +6,17 @@ class PersonalListService {
     public async GetList(): Promise<TableData[]> {
         try {
             const response = await axios.get(this.url)
-            const insuredItems = [];
-            for (const id in CatagoryId) {
-                console.log(id)
-                const filteredData = response.data.filter((d) => d.catagoryId == id)
-                insuredItems.push(
+            const tableData: TableData[] = [];
+
+            CatagoryIds.forEach((catagory) => {
+                const filteredData = response.data.filter((d: InsuredItem) => d.catagoryId == catagory.id)
+                tableData.push(
                     {
-                        catagory: CatagoryNames[id],
+                        catagory: catagory.title,
                         body: filteredData
                     });
-            }
-            return insuredItems;
+            });
+            return tableData;
 
         } catch (e) {
             console.log(e)
@@ -24,9 +24,9 @@ class PersonalListService {
         }
     }
 
-    public async PostItem(): Promise<number> {
+    public async PostItem(newItem: InsuredItem): Promise<number> {
         try {
-            const response = await axios.post(this.url, {});
+            const response = await axios.post(this.url, newItem);
             return response.data;
         } catch (e) {
             console.log(e)
@@ -56,16 +56,11 @@ export interface InsuredItem {
     id: number;
     name: string;
     value: number;
-    catagoryId: CatagoryId
+    catagoryId: number;
 }
 
-export enum CatagoryId {
-    Electronics = 1,
-    Clothing = 2,
-    Kitchen = 3,
-}
-export const CatagoryNames = {
-    1: 'Electronics',
-    2: 'Clothing',
-    3: 'Kitchen'
-}
+export const CatagoryIds = [
+    { id: 1, title: 'Electronics' },
+    { id: 1, title: 'Clothing' },
+    { id: 1, title: 'Kitchen' },
+] 

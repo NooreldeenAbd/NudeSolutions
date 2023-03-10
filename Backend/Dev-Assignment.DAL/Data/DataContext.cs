@@ -23,10 +23,6 @@ namespace Dev_Assignment.DAL.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
 
-        public async Task<int> SaveChangesAsync()
-        {
-            return await this.SaveChangesAsync();
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

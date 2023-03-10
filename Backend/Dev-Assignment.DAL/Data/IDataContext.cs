@@ -13,6 +13,5 @@ namespace Dev_Assignment.DAL.Data
         DbSet<InsuredItem> InsuredItems { get; set; }
 
         int SaveChanges();
-        Task<int> SaveChangesAsync();
     }
 }
